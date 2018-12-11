@@ -1,0 +1,173 @@
+//
+// Variables specific to module label
+//
+variable "attributes" {
+  description = "Suffix name with additional attributes (policy, role, etc.)"
+  type        = "list"
+  default     = []
+}
+
+variable "delimiter" {
+  description = "Delimiter to be used between `name`, `namespaces`, `attributes`, etc."
+  default     = "-"
+}
+
+variable "environment" {
+  description = "Environment (ex: `dev`, `qa`, `stage`, `prod`). (Second or top level namespace. Depending on namespacing options)"
+  default     = "MGMT"
+}
+
+variable "name" {
+  description = "Base name for resources"
+  default     = "nexus"
+}
+
+variable "namespace-env" {
+  description = "Prefix name with the environment. If true, format is: <env>-<name>"
+  default     = true
+}
+
+variable "namespace-org" {
+  description = "Prefix name with the organization. If true, format is: <org>-<env namespaced name>. If both env and org namespaces are used, format will be <org>-<env>-<name>"
+  default     = false
+}
+
+variable "organization" {
+  description = "Organization name (Top level namespace)."
+  default     = "appzen"
+}
+
+variable "tags" {
+  description = "A map of additional tags"
+  type        = "map"
+  default     = {}
+}
+
+//
+// Variables specific to Nexus module
+//
+variable "acm_cert_domain" {
+  description = "Domain name of ACM-managed certificate"
+  type        = "string"
+  default     = "*.mgmt.appzen.com"
+}
+
+variable "aws_profile" {
+  default = "appzen"
+}
+
+variable "docker_image" {
+  description = "Docker image to use for task"
+  type        = "string"
+  default     = "sonatype/nexus3"
+}
+
+variable "docker_memory" {
+  description = "Hard limit on memory use for task container (default 256)"
+  default     = 2048
+}
+
+variable "docker_memory_reservation" {
+  description = "Soft limit on memory use for task container (default 128)"
+  default     = 2048
+}
+
+variable "ecs_cluster_arn" {
+  description = "ARN of ECS cluster in which the service will be deployed"
+  type        = "string"
+  default     = ""
+}
+
+variable "ecs_security_group_id" {
+  description = "Security group ID of ECS cluster in which the service will be deployed"
+  type        = "string"
+  default     = ""
+}
+
+variable "ecs_desired_count" {
+  description = "Desired number of containers in the task (default 1)"
+  type        = "string"
+  default     = 1
+}
+
+variable "instance_type" {
+  description = "AWS Instance type, if you change, make sure it is compatible with AMI, not all AMIs allow all instance types "
+  default     = "t3.medium"
+}
+
+variable "key_name" {
+  description = "SSH key name to use"
+  default     = "devops-2018-12-04"
+}
+
+variable "lb_enable_https" {
+  description = "Enable HTTPS listener in LB (http or https MUST be enabled)"
+  default     = "false"
+}
+
+variable "lb_enable_http" {
+  description = "Enable HTTP listener in LB (http or https MUST be enabled)"
+  default     = "true"
+}
+
+variable "lb_https_ports" {
+  default = "443"
+}
+
+variable "lb_internal" {
+  description = "Configure LB as internal-only"
+  default     = "true"
+}
+
+variable "lb_ingress_cidr_blocks" {
+  description = "CIDR block to whitelist for the load balancer"
+  type        = "list"
+
+  default = [
+    # Appzen offices
+    "12.51.198.242/32",  # "0.0.0.0/0",
+
+    "184.183.7.98/32",
+
+    # Bitbucket
+    # "104.192.136.0/21","34.198.203.127","34.198.32.85",
+    # Bitbucket Pipeline build environments
+    "34.199.54.113/32",
+
+    "34.232.25.90/32",
+    "34.232.119.183/32",
+    "34.236.25.177/32",
+    "35.171.175.212/32",
+    "52.54.90.98/32",
+    "52.202.195.162/32",
+    "52.203.14.55/32",
+    "52.204.96.37/32",
+    "34.218.156.209/32",
+    "34.218.168.212/32",
+    "52.41.219.63/32",
+    "35.155.178.254/32",
+    "35.160.177.10/32",
+    "34.216.18.129/32",
+  ]
+}
+
+variable "lb_subnet_ids" {
+  description = "VPC subnet IDs in which to create the LB (unnecessary if neither lb_enable_https or lb_enable_http are true)"
+  type        = "list"
+  default     = []
+}
+
+variable "mount_point" {
+  description = "Host directory to map as /nexus-data in container"
+  default     = ""
+}
+
+variable "region" {
+  default = "us-east-1"
+}
+
+variable "vpc_id" {
+  description = "ID of VPC in which ECS cluster is located"
+  type        = "string"
+  default     = ""
+}
