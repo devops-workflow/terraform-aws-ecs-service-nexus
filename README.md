@@ -45,7 +45,7 @@ module "" {
 | mount\_point | Host directory to map as /nexus-data in container | string | `` | no |
 | name | Base name for resources | string | `nexus` | no |
 | namespace-env | Prefix name with the environment. If true, format is: {env}-{name} | string | `true` | no |
-| namespace-org | Prefix name with the organization. If true, format is: {org}-{env namespaced name}. If both env and org namespaces are used, format will be <org>-<env>-<name> | string | `false` | no |
+| namespace-org | Prefix name with the organization. If true, format is: {org}-{env namespaced name}. If both env and org namespaces are used, format will be {org}-{env}-{name} | string | `false` | no |
 | organization | Organization name (Top level namespace). | string | `appzen` | no |
 | region | - | string | `us-east-1` | no |
 | tags | A map of additional tags | map | `<map>` | no |

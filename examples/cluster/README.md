@@ -34,7 +34,7 @@ Note that this example may create resources which cost money. Run `terraform des
 | lb\_ingress\_cidr\_blocks | CIDR block to whitelist for the load balancer | list | `<list>` | no |
 | name | Base name for resources | string | `nexus` | no |
 | namespace-env | Prefix name with the environment. If true, format is: {env}-{name} | string | `true` | no |
-| namespace-org | Prefix name with the organization. If true, format is: {org}-{env namespaced name}. If both env and org namespaces are used, format will be <org>-<env>-<name> | string | `false` | no |
+| namespace-org | Prefix name with the organization. If true, format is: {org}-{env namespaced name}. If both env and org namespaces are used, format will be {org}-{env}-{name} | string | `false` | no |
 | organization | Organization name (Top level namespace). | string | `example` | no |
 | region | - | string | `us-east-1` | no |
 | tags | A map of additional tags | map | `<map>` | no |
