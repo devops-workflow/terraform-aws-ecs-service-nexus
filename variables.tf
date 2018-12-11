@@ -14,7 +14,7 @@ variable "delimiter" {
 
 variable "environment" {
   description = "Environment (ex: `dev`, `qa`, `stage`, `prod`). (Second or top level namespace. Depending on namespacing options)"
-  default     = "MGMT"
+  default     = "mgmt"
 }
 
 variable "name" {
@@ -23,12 +23,12 @@ variable "name" {
 }
 
 variable "namespace-env" {
-  description = "Prefix name with the environment. If true, format is: <env>-<name>"
+  description = "Prefix name with the environment. If true, format is: {env}-{name}"
   default     = true
 }
 
 variable "namespace-org" {
-  description = "Prefix name with the organization. If true, format is: <org>-<env namespaced name>. If both env and org namespaces are used, format will be <org>-<env>-<name>"
+  description = "Prefix name with the organization. If true, format is: {org}-{env namespaced name}. If both env and org namespaces are used, format will be <org>-<env>-<name>"
   default     = false
 }
 
@@ -49,11 +49,11 @@ variable "tags" {
 variable "acm_cert_domain" {
   description = "Domain name of ACM-managed certificate"
   type        = "string"
-  default     = "*.mgmt.appzen.com"
+  default     = ""
 }
 
 variable "aws_profile" {
-  default = "appzen"
+  default = ""
 }
 
 variable "docker_image" {
@@ -122,33 +122,7 @@ variable "lb_internal" {
 variable "lb_ingress_cidr_blocks" {
   description = "CIDR block to whitelist for the load balancer"
   type        = "list"
-
-  default = [
-    # Appzen offices
-    "12.51.198.242/32",  # "0.0.0.0/0",
-
-    "184.183.7.98/32",
-
-    # Bitbucket
-    # "104.192.136.0/21","34.198.203.127","34.198.32.85",
-    # Bitbucket Pipeline build environments
-    "34.199.54.113/32",
-
-    "34.232.25.90/32",
-    "34.232.119.183/32",
-    "34.236.25.177/32",
-    "35.171.175.212/32",
-    "52.54.90.98/32",
-    "52.202.195.162/32",
-    "52.203.14.55/32",
-    "52.204.96.37/32",
-    "34.218.156.209/32",
-    "34.218.168.212/32",
-    "52.41.219.63/32",
-    "35.155.178.254/32",
-    "35.160.177.10/32",
-    "34.216.18.129/32",
-  ]
+  default     = ["0.0.0.0/0"]
 }
 
 variable "lb_subnet_ids" {

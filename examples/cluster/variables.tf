@@ -23,12 +23,12 @@ variable "name" {
 }
 
 variable "namespace-env" {
-  description = "Prefix name with the environment. If true, format is: <env>-<name>"
+  description = "Prefix name with the environment. If true, format is: {env}-{name}"
   default     = true
 }
 
 variable "namespace-org" {
-  description = "Prefix name with the organization. If true, format is: <org>-<env namespaced name>. If both env and org namespaces are used, format will be <org>-<env>-<name>"
+  description = "Prefix name with the organization. If true, format is: {org}-{env namespaced name}. If both env and org namespaces are used, format will be <org>-<env>-<name>"
   default     = false
 }
 
